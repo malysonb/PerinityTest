@@ -46,7 +46,7 @@ public class TarefasService {
         Tarefa tarefa = tarefaRepo.findById(id).orElseThrow(() -> new RegraNegocioException("Esta tarefa de id '"+id+"' não existe!"));
         Optional<Pessoa> pessoa = dto == null ? getPessoasLivre(pessoaRepo.findByIdDepartamento(tarefa.getIdDepartamento().getId())) :
                                                 pessoaRepo.findByIdAndDepartamento(tarefa.getIdDepartamento().getId(), dto.getIdPessoa());
-        tarefa.setIdPessoa(pessoa.orElseThrow(() -> new RegraNegocioException("Pessoa não encontrada no departamento da tarefa!")));
+        tarefa.setIdPessoa(pessoa.orElseThrow(() -> new RegraNegocioException("Esta pessoa não encontrada no departamento "+ tarefa.getIdDepartamento().getTitulo() +"!")));
         return tarefaRepo.save(tarefa);
     }
 

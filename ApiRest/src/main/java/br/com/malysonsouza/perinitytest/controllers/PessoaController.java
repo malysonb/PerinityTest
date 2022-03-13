@@ -25,14 +25,14 @@ import br.com.malysonsouza.perinitytest.models.Pessoa;
 import br.com.malysonsouza.perinitytest.services.PessoaService;
 
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
 
 @RestController
 @RequestMapping("/pessoas")
 public class PessoaController {
-    
+
     @Autowired
     PessoaService service;
 
@@ -50,7 +50,8 @@ public class PessoaController {
             @ApiResponse(code = 400, message = "Faltam dados para realizar a edição."),
             @ApiResponse(code = 500, message = "Erro ao salvar pessoa.") })
     @PutMapping("/{id}")
-    public ResponseEntity<Pessoa> alterarPessoa(@PathVariable("id") Long id, @RequestBody @Valid PessoaDTO dto) throws Exception {
+    public ResponseEntity<Pessoa> alterarPessoa(@PathVariable("id") Long id, @RequestBody @Valid PessoaDTO dto)
+            throws Exception {
         return new ResponseEntity<>(service.salvar(dto, id), HttpStatus.OK);
     }
 
@@ -59,7 +60,7 @@ public class PessoaController {
             @ApiResponse(code = 400, message = "Faltam dados para deletar."),
             @ApiResponse(code = 500, message = "Erro ao deletar pessoa.") })
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePessoa(@PathVariable("id") Long id) throws Exception{
+    public ResponseEntity<String> deletePessoa(@PathVariable("id") Long id) throws Exception {
         return new ResponseEntity<>(service.removerPessoa(id), HttpStatus.OK);
     }
 
@@ -67,15 +68,16 @@ public class PessoaController {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Busca realizada com sucesso."),
             @ApiResponse(code = 500, message = "Erro ao processar a busca.") })
     @GetMapping
-    public ResponseEntity<List<PessoaResultDTO>> getPessoas(){
+    public ResponseEntity<List<PessoaResultDTO>> getPessoas() {
         return new ResponseEntity<>(service.listarPessoas(), HttpStatus.OK);
     }
 
-    @ApiOperation(value = "Busca as pessoas baseado com condição de nome e data. Retorna horas gastas em projetos")
+    @ApiOperation(value = "Busca as pessoas baseado com condição de nome e data. Retorna horas gastas em projetos DATAS NO FORMATO dd-MM-yyyy")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "Busca realizada com sucesso."),
             @ApiResponse(code = 500, message = "Erro ao processar a busca.") })
-    @GetMapping(path = "/gastos", headers="Accept=application/json")
-    public ResponseEntity<List<PessoaGastosDTO>> getBusca(@PathParam("dto") PesquisarPrazoDTO dto){
+    @GetMapping(path = "/gastos", headers = "Accept=application/json")
+    public ResponseEntity<List<PessoaGastosDTO>> getBusca(
+            @PathParam("dto") PesquisarPrazoDTO dto) {
         return new ResponseEntity<>(service.pesquisarPessoas(dto), HttpStatus.OK);
     }
 
