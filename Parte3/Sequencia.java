@@ -9,7 +9,7 @@
  * e assim sucessivamente, até que o primeiro número (antes da vírgula e sempre
  * ímpar), também chegue ao limite de 10.
  */
-public class sequencia {
+public class Sequencia {
     public static void main(String[] args) {
         for (int i = 1; i <= 10; i++) {
             if(i % 2 != 0) {

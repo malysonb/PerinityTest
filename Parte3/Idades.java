@@ -8,7 +8,7 @@ import java.util.Scanner;
  * velho com a mulher mais nova, e o produto das idades do homem mais novo com a
  * mulher mais velha.
  */
-public class idades {
+public class Idades {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
