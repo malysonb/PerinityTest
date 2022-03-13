@@ -9,4 +9,5 @@ SELECT pessoas.id, nome, MAX(ta.soma) as horas
 	)
 	ta ON ta.tarefa_id = pessoas.id
 	WHERE ta.rank_n = 1
-	GROUP BY pessoas.id ORDER BY horas DESC;
+	GROUP BY pessoas.id ORDER BY horas DESC
+	LIMIT 1;

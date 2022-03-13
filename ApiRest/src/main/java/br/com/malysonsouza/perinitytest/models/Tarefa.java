@@ -45,7 +45,7 @@ public class Tarefa {
     private int duracao;
 
     @ManyToOne
-    @JoinColumn(name = "idPessoa")
+    @JoinColumn(name = "id_pessoa")
     @JsonIgnoreProperties({"idDepartamento", "tarefas"})
     private Pessoa idPessoa;
 
