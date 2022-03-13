@@ -4,13 +4,17 @@ import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class PesquisarPrazoDTO {
     
     private String nome;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataInicial;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate dataFinal;
 
