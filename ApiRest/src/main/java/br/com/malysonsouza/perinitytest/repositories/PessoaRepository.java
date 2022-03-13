@@ -25,7 +25,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
     @Query("SELECT new br.com.malysonsouza.perinitytest.dto.resultados.PessoaGastosDTO(pessoas.id, pessoas.nome, AVG(f.duracao)) "+
 	"FROM Pessoa pessoas, Tarefa tarefas INNER JOIN Pessoa p ON p.id = tarefas.idPessoa "+
     "INNER JOIN Tarefa f ON f.idPessoa = pessoas.id "+
-	"WHERE tarefas.prazo BETWEEN :dataInicial AND :dataFinal and pessoas.nome LIKE CONCAT('%', :nome, '%') "+
+	"WHERE f.prazo BETWEEN :dataInicial AND :dataFinal and pessoas.nome LIKE CONCAT('%', :nome, '%') "+
     "GROUP BY pessoas.id, pessoas.nome")
     List<PessoaGastosDTO> findPessoasMedia(@Param("dataInicial") LocalDate dataInicial, @Param("dataFinal") LocalDate dataFinal, @Param("nome") String nome);
 
