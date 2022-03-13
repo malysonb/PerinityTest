@@ -1,6 +1,6 @@
 package br.com.malysonsouza.perinitytest.models;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +12,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import br.com.malysonsouza.perinitytest.dto.TarefaDTO;
+
 @Entity
 @Table(name = "Tarefas")
 public class Tarefa {
     
     @Id
-    @SequenceGenerator(initialValue = 1000, name = "tarefa_sequence")
+    @SequenceGenerator(initialValue = 1001, name = "tarefa_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tarefa_sequence")
     private long id;
 
@@ -28,10 +33,12 @@ public class Tarefa {
     private String descricao;
 
     @Column(name = "prazo")
-    private LocalDateTime prazo;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate prazo;
 
     @ManyToOne
     @JoinColumn(name = "id_departamento")
+    @JsonIgnoreProperties({"pessoas", "tarefas"})
     private Departamento idDepartamento;
 
     @Column(name = "duracao")
@@ -39,14 +46,30 @@ public class Tarefa {
 
     @ManyToOne
     @JoinColumn(name = "idPessoa")
+    @JsonIgnoreProperties({"idDepartamento", "tarefas"})
     private Pessoa idPessoa;
 
     @Column(name = "finalizado")
     private Boolean finalizado;
 
+    /* Construtores */
+
+    public Tarefa() {
+    }
+
+    public Tarefa(TarefaDTO dto) {
+        this.titulo = dto.getTitulo();
+        this.descricao = dto.getDescricao();
+        this.prazo = dto.getPrazo();
+        this.duracao = dto.getDuracao();
+        this.finalizado = false;
+    }
+
+    // Getters 'n' setters abaixo
     public long getId() {
         return id;
     }
+
 
     public void setId(long id) {
         this.id = id;
@@ -68,11 +91,11 @@ public class Tarefa {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getPrazo() {
+    public LocalDate getPrazo() {
         return prazo;
     }
 
-    public void setPrazo(LocalDateTime prazo) {
+    public void setPrazo(LocalDate prazo) {
         this.prazo = prazo;
     }
 

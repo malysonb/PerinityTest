@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.malysonsouza.perinitytest.dto.CreateDepartamentoDTO;
-import br.com.malysonsouza.perinitytest.dto.DepartamentoShowDTO;
+import br.com.malysonsouza.perinitytest.dto.resultados.DepartamentoShowDTO;
 import br.com.malysonsouza.perinitytest.exceptions.RegraNegocioException;
 import br.com.malysonsouza.perinitytest.models.Departamento;
 import br.com.malysonsouza.perinitytest.repositories.DepartamentoRepository;

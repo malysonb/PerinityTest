@@ -6,4 +6,6 @@ import br.com.malysonsouza.perinitytest.models.Departamento;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Long> {
     
+    
+
 }
