@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 /**
+ * DESAFIO 4
  * Escreva um algoritmo que receba dois arrays de inteiros ordenados e retorne
  * um array que seja a união ordenada destes arrays. Desenvolva todo o algoritmo
  * desde a entrada dos vetores até a saída do vetor final, não utilize métodos

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 /**
+ * DESAFIO 2
  * Escreva um algoritmo que leia as idades de 2 homens e de 2 mulheres
  * (considere que as idades dos homens serão sempre diferentes entre si, bem
  * como as das mulheres). Calcule e escreva a soma das idades do homem mais

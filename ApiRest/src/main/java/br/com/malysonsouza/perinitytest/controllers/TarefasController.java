@@ -3,7 +3,6 @@ package br.com.malysonsouza.perinitytest.controllers;
 import java.util.List;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
