@@ -1,9 +1,9 @@
 # PerinityTest
 Desafio da Perinity
 
-#### PARTE 1
+### PARTE 1
 
-Documentação e testes podem ser acessados em [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+Ao executar o projeto será possivel acessar documentação por este caminho: [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 Funções implementadas:
 
@@ -27,11 +27,11 @@ Funções implementadas:
 
 - Listar departamento e quantidade de pessoas e tarefas (get/departamentos)
 
-#### PARTE 2
-
-Os Scripts de Select podem ser acessados na pagina PARTE 2
+### PARTE 2
 
 ##### ENTIDADES FORAM ALTERADADS DE camelCase PARA snake_case PARA EVITAR PROBLEMAS
+
+Os Scripts de Select podem ser acessados na pagina PARTE 2
 
 Os scripts estão com a sintaxe do PostgresSQL
 
@@ -70,7 +70,7 @@ SELECT tarefas.titulo, COALESCE('Encaminhado para ' || pessoa.nome, 'Pendente') 
 ```
 ![Exemplo Dono das tarefas](Parte2/DonoDaTarefa.png "Mostra tarefas atribuidas")
 
-#### PARTE 3
+### PARTE 3
 
 1. ![Resposta 1 parte 3](Parte3/1-RespostaAlgoritmo.png "Resposta primeira questão da parte 3")
 
