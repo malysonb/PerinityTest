@@ -1,4 +1,4 @@
-package br.com.malysonsouza.perinitytest.dto;
+package br.com.malysonsouza.perinitytest.dto.resultados;
 
 import br.com.malysonsouza.perinitytest.models.Departamento;
 
