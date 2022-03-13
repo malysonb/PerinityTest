@@ -24,6 +24,13 @@ public class PessoaService {
     @Autowired
     DepartamentoRepository depRepo;
 
+    /**
+     * Salvar uma pessoa no sistema.
+     * @param dto dto para facilitar o cadastro de usuário.
+     * @param id id para edição do usuário, Coloque 0L para salvar um novo usuário
+     * @return Nova pessoa cadastrada
+     * @throws Exception Lança uma exceção ao não encontrar departamento.
+     */
     public Pessoa salvar(PessoaDTO dto, long id) throws Exception {
         Pessoa pessoa = id == 0L ? new Pessoa() : pessoaRepo.getById(id);
         pessoa.setNome(dto.getNome());
@@ -32,6 +39,11 @@ public class PessoaService {
         return pessoaRepo.save(pessoa);
     }
 
+    /**
+     * Remove uma pessoa do banco de dados.
+     * @param id id da pessoa que deve ser removida.
+     * @return mensagem avisando status da operação.
+     */
     public String removerPessoa(long id){
         try {
             pessoaRepo.deleteById(id);
@@ -41,6 +53,10 @@ public class PessoaService {
         return "Pessoa removida!";
     }
 
+    /**
+     * Lista todas as pessoas exibindo horas gastas
+     * @return lista de pessoas.
+     */
     public List<PessoaResultDTO> listarPessoas(){
         List<Pessoa> lista = pessoaRepo.findAll();
         List<PessoaResultDTO> result = new ArrayList<PessoaResultDTO>();
@@ -50,6 +66,11 @@ public class PessoaService {
         return result;
     }
 
+    /**
+     * Pesquisa pessoas dado um periodo e nome.
+     * @param dto
+     * @return
+     */
     public List<PessoaGastosDTO> pesquisarPessoas(PesquisarPrazoDTO dto){
         List<PessoaGastosDTO> lista = pessoaRepo.findPessoasMedia(dto.getDataInicial(), dto.getDataFinal(), dto.getNome());
         return lista;

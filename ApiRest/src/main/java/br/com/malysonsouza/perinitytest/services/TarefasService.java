@@ -31,10 +31,20 @@ public class TarefasService {
     @Autowired
     PessoaRepository pessoaRepo;
 
+    /**
+     * Retorna todas as tarefas (para checar)
+     * @return lista de tarefas
+     */
     public List<Tarefa> allTarefas(){
         return tarefaRepo.findAll();
     }
 
+    /**
+     * Salva ou edita uma tarefa
+     * @param dto dto para facilidar a criação de uma tarefa.
+     * @param id id para edição de tarefa. deixe 0L para criar uma nova tarefa.
+     * @return Tarefa que acabou de ser salva.
+     */
     public Tarefa addTarefa(TarefaDTO dto, long id){
         Tarefa tarefa = id == 0L ? new Tarefa() : tarefaRepo.findById(id)
             .orElseThrow(() -> new RegraNegocioException("Tarefa não encontrada!"));
@@ -44,6 +54,12 @@ public class TarefasService {
         return tarefaRepo.save(tarefa);
     }
 
+    /**
+     * Atribui uma tarefa à uma pessoa dado o id da tarefa e id da pessoa
+     * @param id identificação da tarefa.
+     * @param dto dto onde irá receber o id da pessoa que terá a atividade atribuida.
+     * @return Recebe de volta a tarefa para confirmar alterações.
+     */
     public Tarefa atribuirTarefa(Long id, AtribuirTarefaDTO dto){
         Tarefa tarefa = tarefaRepo.findById(id).orElseThrow(() -> new RegraNegocioException("Esta tarefa de id '"+id+"' não existe!"));
         Optional<Pessoa> pessoa = dto == null ? getPessoasLivre(pessoaRepo.findByIdDepartamento(tarefa.getIdDepartamento().getId())) :
@@ -52,12 +68,21 @@ public class TarefasService {
         return tarefaRepo.save(tarefa);
     }
 
+    /**
+     * Finaliza uma tarefa
+     * @param id id da tarefa
+     * @return Tarefa para confirmação.
+     */
     public Tarefa finalizarTarefa(Long id){
         Tarefa tarefa = tarefaRepo.findById(id).orElseThrow(() -> new RegraNegocioException("Esta tarefa de id '"+id+"' não existe!"));
         tarefa.setFinalizado(true);
         return tarefaRepo.save(tarefa);
     }
 
+    /**
+     * Retorna tarefas incompletas e sem pessoas atribuidas.
+     * @return lista de tarefas
+     */
     public List<Tarefa> pendentes(){
         List<Tarefa> tarefas = tarefaRepo.tarefasAntigas(PageRequest.of(0, 3));
         tarefas.sort( new Comparator<Tarefa>(){
@@ -75,6 +100,11 @@ public class TarefasService {
         return tarefas;
     }
 
+    /**
+     * Retorna pessoas disponiveis para atribuição automatica.
+     * @param pessoas lista de pessoas.
+     * @return lista de pessoas livres.
+     */
     public Optional<Pessoa> getPessoasLivre(List<Pessoa> pessoas){
         List<Pessoa> l_Pessoas = pessoas.stream().filter(pessoa -> {;
             for (Tarefa t : pessoa.getTarefas()) {
