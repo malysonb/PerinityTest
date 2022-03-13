@@ -3,6 +3,7 @@ package br.com.malysonsouza.perinitytest.controllers;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,17 @@ public class TarefasController {
     @PostMapping
     public ResponseEntity<Tarefa> addTarefa(
             @ApiParam(name = "TarefaDTO", value = "Prazo deve ter o formato: dd-MM-yyyy", required = true) @RequestBody @Valid TarefaDTO dto) {
-        return new ResponseEntity<>(service.addTarefa(dto), HttpStatus.CREATED);
+        return new ResponseEntity<>(service.addTarefa(dto, 0L), HttpStatus.CREATED);
+    }
+
+    @ApiOperation(value = "Edita uma tarefa prazo deve ser no formato: dd-MM-yyyy")
+    @ApiResponses(value = { @ApiResponse(code = 201, message = "item cadastrado com sucesso!."),
+            @ApiResponse(code = 400, message = "Faltam dados para realizar a inserção."),
+            @ApiResponse(code = 500, message = "Erro ao salvar item.") })
+    @PutMapping("/{id}")
+    public ResponseEntity<Tarefa> editaTarefa(
+            @ApiParam(name = "TarefaDTO", value = "Prazo deve ter o formato: dd-MM-yyyy", required = true) @RequestBody @Valid TarefaDTO dto, @PathVariable("id") long id) {
+        return new ResponseEntity<>(service.addTarefa(dto, id), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Atribui uma tarefa à uma pessoa")

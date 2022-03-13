@@ -50,7 +50,7 @@ public class Tarefa {
     private Pessoa idPessoa;
 
     @Column(name = "finalizado")
-    private Boolean finalizado;
+    private Boolean finalizado = false;
 
     /* Construtores */
 
@@ -129,6 +129,13 @@ public class Tarefa {
 
     public void setFinalizado(Boolean finalizado) {
         this.finalizado = finalizado;
+    }
+
+    public void loadDTO(TarefaDTO dto) {
+        this.titulo = dto.getTitulo();
+        this.descricao = dto.getDescricao();
+        this.prazo = dto.getPrazo();
+        this.duracao = dto.getDuracao();
     }
 
 }

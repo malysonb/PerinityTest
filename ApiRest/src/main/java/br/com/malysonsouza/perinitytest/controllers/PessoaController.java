@@ -25,7 +25,6 @@ import br.com.malysonsouza.perinitytest.models.Pessoa;
 import br.com.malysonsouza.perinitytest.services.PessoaService;
 
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 

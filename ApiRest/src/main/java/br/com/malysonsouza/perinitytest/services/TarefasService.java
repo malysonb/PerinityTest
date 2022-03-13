@@ -35,8 +35,10 @@ public class TarefasService {
         return tarefaRepo.findAll();
     }
 
-    public Tarefa addTarefa(TarefaDTO dto){
-        Tarefa tarefa = new Tarefa(dto);
+    public Tarefa addTarefa(TarefaDTO dto, long id){
+        Tarefa tarefa = id == 0L ? new Tarefa() : tarefaRepo.findById(id)
+            .orElseThrow(() -> new RegraNegocioException("Tarefa não encontrada!"));
+        tarefa.loadDTO(dto);
         tarefa.setIdDepartamento(depRepo.findById(dto.getIdDepartamento())
                                 .orElseThrow(() -> new RegraNegocioException("Departamento não encontrado!")));
         return tarefaRepo.save(tarefa);
