@@ -53,7 +53,7 @@ public class TarefasService {
     public Tarefa finalizarTarefa(Long id){
         Tarefa tarefa = tarefaRepo.findById(id).orElseThrow(() -> new RegraNegocioException("Esta tarefa de id '"+id+"' não existe!"));
         tarefa.setFinalizado(true);
-        return tarefa;
+        return tarefaRepo.save(tarefa);
     }
 
     public List<Tarefa> pendentes(){
