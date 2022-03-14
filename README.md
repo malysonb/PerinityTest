@@ -80,4 +80,4 @@ SELECT tarefas.titulo, COALESCE('Encaminhado para ' || pessoa.nome, 'Pendente') 
 
 1. ![Resposta 1 parte 3](Parte3/1-RespostaAlgoritmo.png "Resposta primeira questão da parte 3")
 
-Os outros algoritmos podem ser acessados na pasta [PARTE 3](https://github.com/malysonb/PerinityTest/tree/main/Parte3)
+Os outros algoritmos podem ser acessados na pasta [PARTE 3](https://github.com/malysonb/PerinityTest/tree/main/Parte3), Assim como suas implementações em java.
