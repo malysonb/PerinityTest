@@ -29,7 +29,7 @@ Funções implementadas:
 
 ### PARTE 2
 
-##### ENTIDADES FORAM ALTERADADS DE camelCase PARA snake_case PARA EVITAR PROBLEMAS
+##### ENTIDADES FORAM ALTERADADS DE camelCase PARA snake_case PARA EVITAR PROBLEMAS COM API
 
 Os Scripts de Select podem ser acessados na pagina PARTE 2
 
