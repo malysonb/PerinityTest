@@ -35,6 +35,8 @@ Os Scripts de Select podem ser acessados na pagina PARTE 2
 
 Os scripts estão com a sintaxe do PostgresSQL
 
+##### Q: Montar select que retorne nome do departamento, quantidade de tarefas finalizadas e quantidade de tarefas não finalizadas
+
 ```SQL
 SELECT departamentos.id, departamentos.titulo, SUM((ta.finalizado)::int) as finalizados, SUM(CASE WHEN NOT ta.finalizado then 1 else 0 end) as nao_finalizados
 	FROM departamentos INNER JOIN tarefas ta ON ta.id_departamento = departamentos.id
@@ -43,6 +45,8 @@ SELECT departamentos.id, departamentos.titulo, SUM((ta.finalizado)::int) as fina
 ```
 ![Exemplo departamento](Parte2/Departamento.png "Departamento")
  <hr>
+ 
+ ##### Q: Retornar a pessoa que mais gastou horas em janeiro de 2022
  
 ```SQL
 SELECT pessoas.id, nome, MAX(ta.soma) as horas
@@ -62,6 +66,8 @@ SELECT pessoas.id, nome, MAX(ta.soma) as horas
 ![Exemplo Mais horas gastas](Parte2/QuemGastouMaisHoras.png "Quem gastou mais")
 
 <hr>
+
+##### Q: Select que retorne título da tarefa, prazo, se tiver pessoa alocada na tarefa exibir como “Encaminhado para + nome do pessoa” caso contrário “Pendente” e total de horas que essa pessoa já gastou. Ordenar por prazo decrescente. 
 
 ```SQL
 SELECT tarefas.titulo, COALESCE('Encaminhado para ' || pessoa.nome, 'Pendente') as Pessoa
