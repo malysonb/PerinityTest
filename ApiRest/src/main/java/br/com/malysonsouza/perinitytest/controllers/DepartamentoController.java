@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -72,7 +73,11 @@ public class DepartamentoController {
             @ApiResponse(code = 500, message = "Erro ao deletar departamento.") })
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletaDepartamento(@PathVariable("id") Long id){
-        depRepo.deleteById(id);
+        try {
+            depRepo.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new RegraNegocioException("Necessário alterar o departamento ou remover Pessoas/Tarefas para completar ação.");
+        }
         return new ResponseEntity<>("Departamento deletado!", HttpStatus.OK);
     }
 
