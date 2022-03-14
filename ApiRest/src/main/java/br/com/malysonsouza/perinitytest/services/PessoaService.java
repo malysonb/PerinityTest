@@ -3,6 +3,8 @@ package br.com.malysonsouza.perinitytest.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,7 @@ public class PessoaService {
      * @return Nova pessoa cadastrada
      * @throws Exception Lança uma exceção ao não encontrar departamento.
      */
+    @Transactional
     public Pessoa salvar(PessoaDTO dto, long id) throws Exception {
         Pessoa pessoa = id == 0L ? new Pessoa() : pessoaRepo.getById(id);
         pessoa.setNome(dto.getNome());

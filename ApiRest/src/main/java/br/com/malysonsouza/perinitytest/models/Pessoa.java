@@ -31,7 +31,7 @@ public class Pessoa {
     private Departamento idDepartamento;
 
     @OneToMany(mappedBy = "idPessoa")
-    @JsonIgnoreProperties({"idDepartamento"})
+    @JsonIgnoreProperties({"idDepartamento", "idPessoa"})
     private List<Tarefa> tarefas;
 
     public long getId() {
