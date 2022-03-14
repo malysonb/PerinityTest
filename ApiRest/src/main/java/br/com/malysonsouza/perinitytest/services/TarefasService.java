@@ -121,4 +121,9 @@ public class TarefasService {
         return "Tarefa deletada!";
     }
 
+    public void desalocar(Tarefa tarefa){
+        tarefa.setIdPessoa(null);
+        tarefaRepo.save(tarefa);
+    }
+
 }

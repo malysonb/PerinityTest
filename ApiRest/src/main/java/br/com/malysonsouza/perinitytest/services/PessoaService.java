@@ -26,6 +26,9 @@ public class PessoaService {
     @Autowired
     DepartamentoRepository depRepo;
 
+    @Autowired
+    TarefasService tarefasService;
+
     /**
      * Salvar uma pessoa no sistema.
      * @param dto dto para facilitar o cadastro de usuário.
@@ -49,9 +52,12 @@ public class PessoaService {
      */
     public String removerPessoa(long id){
         try {
-            pessoaRepo.deleteById(id);
+            Pessoa pessoa = pessoaRepo.findById(id).orElseThrow(() -> new RegraNegocioException("Pessoa não encontrada!"));
+            pessoa.getTarefas().forEach(a -> tarefasService.desalocar(a));
+            pessoaRepo.delete(pessoa);
         } catch (Exception e) {
-            throw new RegraNegocioException("Pessoa não encontrada!");
+            System.out.println(e);
+            throw new RegraNegocioException("Operação não pode ser completada!");
         }
         return "Pessoa removida!";
     }
