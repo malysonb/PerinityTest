@@ -1,0 +1,34 @@
+Inicio
+    
+    inteiro homens[2], mulheres[2]
+
+    ler homens[0]
+    ler homens[1]
+    ler mulheres[0]
+    ler mulheres[1]
+
+    inteiro hMaisVelho, hMaisNovo, mMaisVelha, mMaisNova;
+
+    se homens[0] > homens[1]
+        hMaisVelho = 0
+        hMaisNovo = 1
+    senão
+        hMaisVelho = 1
+        hMaisNovo = 0
+    fim_se
+
+    se mulheres[0] > mulheres[1]
+        mMaisVelha = 0
+        mMaisNova = 1
+    senão
+        mMaisVelha = 1
+        mMaisNova = 0
+    fim_se
+
+    inteiro soma = homens[hMaisVelho] + mulheres[mMaisNova]
+    inteiro produto = homens[hMaisNovo] * mulheres[mMaisVelha]
+
+    imprimir("Soma das idades do homem mais velho com a mulher mais nova: " + soma)
+    imprimir("Produto das idades do homem mais novo com a mulher mais velha: " + produto)
+
+FIM

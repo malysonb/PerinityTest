@@ -1,0 +1,92 @@
+INICIO
+
+    ler tamanhoVetor1
+
+    inteiro iterador = 0
+
+    inteiro Vetor1[tamanhoVetor1]
+
+    REPITA tamanhoVetor1 VEZES
+        ler Vetor1[iterador]
+        iterador = iterador + 1
+    FIM_REPETIR
+
+    ler tamanhoVetor2
+
+    iterador = 0
+
+    inteiro Vetor2[tamanhoVetor2]
+
+    REPITA tamanhoVetor2 VEZES
+        ler Vetor2[iterador]
+        iterador = iterador + 1
+    FIM_REPETIR
+
+    inteiro tamanhoUniao = tamanhoVetor1 + tamanhoVetor2
+
+    inteiro uniao[tamanhoUniao]
+
+    # Unindo vetores
+
+    iterador = 0
+
+    REPITA tamanhoUniao VEZES
+        inteiro it
+
+        SE iterador < tamanhoVetor1
+            it = iterador;
+            uniao[iterador] = Vetor1[it]
+        SENÃO
+            it = iterador - tamanhoVetor1
+            uniao[iterador] = Vetor2[it]
+        FIM_SE
+
+        iterador = iterador + 1
+    FIM_REPETIR
+
+    # ORGANIZANDO VETOR
+
+    iterador = 0
+
+    inteiro contador = 0
+
+    REPITA ENQUANTO iterador < tamanhoUniao
+        inteiro proximo
+
+        # CHECANDO SE CHEGOU AO FIM DO VETOR:
+        SE iterador + 1 >= tamanhoUniao
+            proximo = -1
+        SENÃO
+            proximo = iterador + 1
+        FIM_SE
+
+        # CASO ESTIVER NO FIM DO VETOR SE O CONTADOR DE AÇÕES ESTIVER 0 ELE ENCERRA
+        SE proximo == -1
+            SE contador == 0
+                ENCERRAR_REPETIR
+            SENÃO               # CASO CONTRARIO REINICIARÁ O PROCESSO
+                iterador = 0
+                contador = 0
+                REINICAR_REPETIR
+            FIM_SE
+        FIM_SE
+
+        # TROCANDO DE POSICAO
+        SE uniao[iterador] > uniao[proximo]
+            inteiro salvar = uniao[proximo]
+            uniao[proximo] = uniao[iterador]
+            uniao[iterador] = salvar 
+            contador = contador + 1
+        FIM_SE 
+        iterador = iterador + 1
+    FIM_REPETIR
+
+    # APRESENTANDO VETOR UNIDO E ORGANIZADO
+
+    iterador = 0
+    REPITA tamanhoUniao VEZES
+        IMPRIMA(uniao[iterador])
+        iterador = iterador + 1
+    FIM_REPETIR
+
+FIM

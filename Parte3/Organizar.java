@@ -18,6 +18,7 @@ public class organizar {
                 break;
                 else{
                     i = -1;
+                    it = 0;
                     continue;
                 }
             }
@@ -27,7 +28,6 @@ public class organizar {
                 vetor[i] = buff;
                 it++;
             }
-            it = 0;
         }
         return vetor;
     }

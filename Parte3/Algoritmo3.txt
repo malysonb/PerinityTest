@@ -1,0 +1,11 @@
+INICIO
+
+    inteiro valor = 1; 
+    REPITA 10 VEZES
+        SE valor % 2 != 0
+            imprima("(" + valor + ", 1 2 3 4 5 6 7 8 9 10)")
+        FIM_SE
+        valor = valor + 1
+    FIM_REPETIR
+
+FIM
