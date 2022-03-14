@@ -3,6 +3,8 @@ Desafio da Perinity
 
 ### PARTE 1
 
+<b>Necessário utilizar banco de dados PostgresSQL com um database chamado 'tarefas'.</b>
+
 Ao executar o projeto será possivel acessar documentação por este caminho: [localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 Funções implementadas:
