@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -90,4 +91,13 @@ public class TarefasController {
         return new ResponseEntity<>(service.pendentes(), HttpStatus.OK);
     }
 
+    @ApiOperation(value = "Deleta uma tarefa dado o id")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "Tarefa deletada com sucesso!."),
+            @ApiResponse(code = 400, message = "Faltam dados para deletar."),
+            @ApiResponse(code = 500, message = "Erro ao deletar tarefa.") })
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePessoa(@PathVariable("id") Long id) throws Exception {
+        return new ResponseEntity<>(service.deleteTarefa(id), HttpStatus.OK);
+    }
+    
 }

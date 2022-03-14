@@ -116,4 +116,9 @@ public class TarefasService {
         return l_Pessoas.stream().findAny();
     }
 
+    public String deleteTarefa(long id){
+        tarefaRepo.deleteById(id);
+        return "Tarefa deletada!";
+    }
+
 }
